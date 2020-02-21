@@ -1,4 +1,4 @@
-# Front End Challenge - 
+# Front End Challenge 
 
 Your mission, [should you choose to accept it](https://www.youtube.com/watch?v=0TiqXFssKMY), is to build a front end web application based on an open GraphQL API. The open API to use is a [geographic GraphQL API](https://www.everbase.co/docs/quick-start), listing countries, cities, continents, locations, exchange rates, etc...
 
