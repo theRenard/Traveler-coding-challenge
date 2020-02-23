@@ -1,4 +1,4 @@
-# Front End Challenge 
+# Front End Challenge - A traveler app
 
 Your mission, [should you choose to accept it](https://www.youtube.com/watch?v=0TiqXFssKMY), is to build a front end web application based on an open GraphQL API. The open API to use is a [geographic GraphQL API](https://www.everbase.co/docs/quick-start), listing countries, cities, continents, locations, exchange rates, etc...
 
@@ -34,7 +34,7 @@ Special attention will be given to:
 - Set up a **CI pipeline** for unit testing (GitLab CI, Travis CI, Circle CI, ...)
 - At least **unit test** to be provided
 
-The solution should be hosted on a GitHub or GitLab repository.
+The solution should be hosted on a **private** GitHub or GitLab repository or be sent in a zip file by email.
 
 ## Useful Resources
 
