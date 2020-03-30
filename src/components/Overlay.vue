@@ -36,8 +36,6 @@ const overlay = new Overlay({
 
 export default {
   name: 'Overlay',
-  data: () => ({
-  }),
   computed: {
     city() {
       return this.$store.state.selectedLocation;
