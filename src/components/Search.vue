@@ -38,12 +38,6 @@ export default {
     countries: [],
   }),
   computed: {
-    queryIsValid() {
-      return this.query.length > 2;
-    },
-    buttonType() {
-      return this.queryIsValid ? 'success' : '';
-    },
     placeHolder() {
       return this.$store.state.mapIsActive
         ? 'Ex: Rome, United Kingdom, Berlin...'
