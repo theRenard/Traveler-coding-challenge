@@ -30,5 +30,25 @@ npm run test:e2e
 npm run lint
 ```
 
+### Docker Build and tag the Docker image
+```
+docker build -t my-app:dev .
+```
+
+### Docker spin up the Build container
+```
+docker run -v ${PWD}:/app -v /app/node_modules -p 8081:8080 --rm my-app:dev
+```
+
+### Docker Prod and tag the Docker image
+```
+docker build -f Dockerfile-prod -t my-app:prod .
+```
+
+### Docker spin up the Prod container
+```
+docker run -it -p 80:80 --rm my-app:prod
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
