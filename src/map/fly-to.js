@@ -1,4 +1,4 @@
-import { FLY_TO_TIME_INTERVAL } from '@/config.json';
+import { FLY_TO_TIME_INTERVAL, INITIAL_ZOOM_LVL } from '@/config.json';
 
 export default ({ location, done, view }) => {
   const duration = FLY_TO_TIME_INTERVAL;
@@ -24,7 +24,7 @@ export default ({ location, done, view }) => {
     zoom: zoom - 1,
     duration: duration / 2,
   }, {
-    zoom,
+    zoom: INITIAL_ZOOM_LVL,
     duration: duration / 2,
   }, callback);
 };

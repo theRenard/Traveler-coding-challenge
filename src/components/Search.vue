@@ -1,29 +1,33 @@
 <template lang="pug">
-  transition(name="fade")
     #search( v-show="$store.state.searchIsActive" :class="{ 'is-active': isActive }" )
       el-autocomplete(
-        @focus="focus"
         clearable
         prefix-icon="el-icon-search"
-        :fetch-suggestions="querySearchAsync"
-        @select="handleSelect"
         v-model="query"
+        @select="handleSelect"
+        @focus="focus"
+        :fetch-suggestions="querySearchAsync"
         :trigger-on-focus="false"
-        size="large"
         :placeholder="placeHolder" )
         template( slot-scope="{ item }" )
-          div {{ item.name }} | {{ item.country.name }}
+          .city {{ item.name }}
+          .country {{ item.country.name }}
+      el-button(
+        v-if="isActive"
+        icon="el-icon-star-on"
+        @click="toggleDrawer"
+        type="success" )
 </template>
 
 <script>
 
 import { MIN_QUERY_LENGTH } from '@/config.json';
-import citiesQuery from '@/gql-queries/cities';
-import countriesQuery from '@/gql-queries/countries';
 import { map, view } from '@/map';
 import { stopCarousel } from '@/map/map-carousel';
-import flyTo from '@/map/fly-to';
 import { fromLonLat } from 'ol/proj';
+import citiesQuery from '@/gql-queries/cities';
+import countriesQuery from '@/gql-queries/countries';
+import flyTo from '@/map/fly-to';
 
 export default {
   name: 'Search',
@@ -103,7 +107,6 @@ export default {
     handleSelect(city) {
       const location = fromLonLat([city.location.long, city.location.lat]);
       flyTo({ location, view });
-      // this.$store.commit('HIDE_SEARCH');
       this.$store.commit('SET_SELECTED_LOCATION', city);
       const overlay = map.getOverlayById('city-overlay');
       overlay.setPosition(location);
@@ -112,6 +115,11 @@ export default {
       this.$store.commit('ACTIVATE_MAP');
       stopCarousel();
       this.isActive = true;
+    },
+    toggleDrawer() {
+      if (this.$store.state.drawerIsActive) {
+        this.$store.commit('CLOSE_DRAWER');
+      } else this.$store.commit('OPEN_DRAWER');
     },
   },
 };
@@ -136,6 +144,21 @@ export default {
   }
   .el-input {
     width: 40vw;
+  }
+}
+.el-scrollbar {
+  .city {
+    font-size: 1.5em;
+    margin: 2px 0;
+    font-weight: bold;
+    line-height: 1em;
+  }
+  .country {
+    font-size: 0.83em;
+    margin: 2px 0;
+    padding: 2px 0 6px 0;
+    font-weight: normal;
+    line-height: 1.03em;
   }
 }
 </style>

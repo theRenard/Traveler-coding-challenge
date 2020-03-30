@@ -1,5 +1,9 @@
 <template lang="pug">
   #overlay.el-popover.el-popper( x-placement="right" )
+    el-link(
+      :underline="false"
+      icon="el-icon-close"
+      @click="closeOverlay")
     template( v-if="$store.state.selectedLocation.name" )
       div( x-arrow="" class="popper__arrow" style="top: 5px;" )
       H1 {{ city.name }}
@@ -48,7 +52,12 @@ export default {
   },
   methods: {
     addLocationToJourney() {
-      console.log('ok');
+      this.$store.commit('ADD_SELECTED_LOCATION_TO_JOURNEY');
+      this.$store.commit('OPEN_DRAWER');
+    },
+    closeOverlay() {
+      overlay.setPosition(null);
+      this.$store.commit('RESET_SELECTED_LOCATION');
     },
   },
 };
@@ -70,6 +79,10 @@ export default {
   }
   .el-button {
     place-self: flex-end;
+  }
+  .el-link {
+    position: absolute;
+    right: 10px;
   }
 }
 </style>

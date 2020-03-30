@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     mapIsActive: false,
     searchIsActive: true,
+    drawerIsActive: false,
     selectedLocation: {},
     journey: [],
   },
@@ -17,6 +18,12 @@ export default new Vuex.Store({
     DEACTIVATE_MAP: (state) => {
       state.mapIsActive = false;
     },
+    OPEN_DRAWER: (state) => {
+      state.drawerIsActive = true;
+    },
+    CLOSE_DRAWER: (state) => {
+      state.drawerIsActive = false;
+    },
     HIDE_SEARCH: (state) => {
       state.searchIsActive = false;
     },
@@ -24,13 +31,16 @@ export default new Vuex.Store({
       state.searchIsActive = true;
     },
     SET_SELECTED_LOCATION: (state, payload) => {
-      console.log(payload);
       state.selectedLocation = payload;
     },
     RESET_SELECTED_LOCATION: (state) => {
       state.selectedLocation = {};
     },
-  },
-  actions: {
+    ADD_SELECTED_LOCATION_TO_JOURNEY: (state) => {
+      state.journey.push(state.selectedLocation);
+    },
+    REMOVE_LOCATION_FROM_JOURNEY: (state, payload) => {
+      state.journey.splice(payload, 1);
+    },
   },
 });
