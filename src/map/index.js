@@ -1,3 +1,4 @@
+import { TILES_PRELOAD, INITIAL_ZOOM_LVL } from '@/config.json';
 import 'ol/ol.css';
 import { Map, View } from 'ol';
 import TileLayer from 'ol/layer/Tile';
@@ -5,17 +6,16 @@ import OSM from 'ol/source/OSM';
 
 const view = new View({
   center: [0, 0],
-  zoom: 5,
+  zoom: INITIAL_ZOOM_LVL,
 });
 
-const map = ({ target }) => new Map({
+const map = new Map({
   view,
-  target,
   controls: [],
   layers: [
     new TileLayer({
       source: new OSM(),
-      preload: 4,
+      preload: TILES_PRELOAD,
     }),
   ],
 });

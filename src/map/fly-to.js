@@ -1,5 +1,7 @@
+import { FLY_TO_TIME_INTERVAL } from '@/config.json';
+
 export default ({ location, done, view }) => {
-  const duration = 3000;
+  const duration = FLY_TO_TIME_INTERVAL;
   const zoom = view.getZoom();
   let parts = 2;
   let called = false;

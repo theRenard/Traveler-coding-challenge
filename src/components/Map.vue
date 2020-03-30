@@ -10,7 +10,7 @@ import { startCarousel, stopCarousel } from '@/map/map-carousel';
 export default {
   name: 'Map',
   mounted() {
-    map({ target: 'map' });
+    map.setTarget(this.$el);
     startCarousel();
   },
   destroyed() {

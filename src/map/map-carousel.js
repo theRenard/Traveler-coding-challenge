@@ -1,4 +1,4 @@
-
+import { CAROUSEL_TIME_INTERVAL } from '@/config.json';
 import { fromLonLat } from 'ol/proj';
 import flyTo from '@/map/fly-to';
 import { view } from '@/map';
@@ -23,14 +23,12 @@ let animationInterval = null;
 
 const startCarousel = () => {
   flyTo({ location: pickRandomLocation(), view });
-  console.info('start carousel');
   animationInterval = setInterval(() => {
     flyTo({ location: pickRandomLocation(), view });
-  }, 7000);
+  }, CAROUSEL_TIME_INTERVAL);
 };
 
 const stopCarousel = () => {
-  console.info('stop carousel');
   clearInterval(animationInterval);
 };
 
